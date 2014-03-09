@@ -1,10 +1,19 @@
 package org.test.appengine.repository.entity
 
 import javax.jdo.annotations.PersistenceCapable
-import scala.beans.BeanProperty
+import org.test.appengine.domain.User
+import scala.reflect._
+
+object EUser {
+
+    def fromDomain(user: User) = {
+        new EUser(user.username, user.email)
+    }
+
+}
 
 @PersistenceCapable
-class UserEntity(
+class EUser(
         @BeanProperty
         var username: String,
         @BeanProperty
