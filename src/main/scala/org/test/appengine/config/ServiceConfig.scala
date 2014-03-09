@@ -10,9 +10,9 @@ import org.test.appengine.repository.UserRepository
 class ServiceConfig {
 
     @Autowired
-    private var repositoryConfig: RepositoryConfig = _
+    private var userRepository: UserRepository = _
 
     @Bean
-    def userService: UserService = new UserServiceImpl(repositoryConfig.userRepository)
+    def userService: UserService = new UserServiceImpl(userRepository)
 
 }

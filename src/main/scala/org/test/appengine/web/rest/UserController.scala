@@ -20,12 +20,14 @@ class UserController(
 }
 
 class UserDto(
+        @BeanProperty var id: String,
         @BeanProperty var username: String,
         @BeanProperty var email: String) {
 
-    def this() = this(null, null)
+    def this() = this(null, null, null)
 
     def toDomain = new User(
+        Option(id),
         username,
         email)
 
