@@ -9,8 +9,12 @@ class UserServiceImpl(
     ) extends UserService {
 
 
-    override def saveUser(user: User) {
-        userRepository.saveUser(user)
+    override def save(user: User) {
+        userRepository.save(user)
+    }
+
+    override def findById(id: String) = {
+        userRepository.findById(id)
     }
 
 }

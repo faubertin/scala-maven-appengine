@@ -1,10 +1,11 @@
 package org.test.appengine.web.rest
 
-import org.springframework.web.bind.annotation.{RequestBody, RequestMethod, RequestMapping, RestController}
+import org.springframework.web.bind.annotation._
 import org.test.appengine.service.UserService
-import org.test.appengine.domain.User
 
 import scala.beans.BeanProperty
+import org.slf4j.LoggerFactory
+import org.test.appengine.domain.User
 
 @RestController
 @RequestMapping(Array("/users"))
@@ -12,10 +13,28 @@ class UserController(
         val userService: UserService
     ) {
 
+    private val logger = LoggerFactory.getLogger(classOf[UserController])
+
     @RequestMapping(method = Array(RequestMethod.POST))
-    def saveUser(@RequestBody user: UserDto) {
-        userService.saveUser(user.toDomain)
+    def save(@RequestBody user: UserDto) {
+        userService.save(user.toDomain)
     }
+
+    @RequestMapping(value = Array("/{id}"), method = Array(RequestMethod.GET))
+    def findById(@PathVariable id: String) = {
+        val dto = UserDto.fromDomain(userService.findById(id))
+        logger.info("{}", dto)
+        dto
+    }
+
+}
+
+object UserDto {
+
+    def fromDomain(user: User) = new UserDto(
+            user.id.orNull,
+            user.username,
+            user.email)
 
 }
 

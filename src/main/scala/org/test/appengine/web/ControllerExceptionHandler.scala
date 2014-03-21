@@ -11,6 +11,7 @@ class ControllerExceptionHandler {
     @ExceptionHandler
     def handleException(e: Exception) {
         logger.error("Unexpected error.", e)
+        throw e
     }
 
 }
