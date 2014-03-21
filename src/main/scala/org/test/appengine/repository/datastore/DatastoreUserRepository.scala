@@ -11,7 +11,12 @@ class DatastoreUserRepository(
 
     override def saveUser(user: User) {
         val pm = pmf.getPersistenceManager
-        pm.makePersistent(EUser.fromDomain(user))
+        try {
+            pm.makePersistent(EUser.fromDomain(user))
+        } finally {
+            pm.close
+        }
+
     }
 
 }

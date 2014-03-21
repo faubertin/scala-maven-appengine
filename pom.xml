@@ -109,12 +109,12 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-      
+
     <build>
         <sourceDirectory>src/main/scala</sourceDirectory>
         <testSourceDirectory>src/test/scala</testSourceDirectory>
-        <outputDirectory>target/${project.artifactId}-${project.version}/WEB-INF/classes</outputDirectory> 
-                                   
+        <outputDirectory>target/${project.artifactId}-${project.version}/WEB-INF/classes</outputDirectory>
+
         <plugins>
             <plugin>
                 <groupId>net.alchim31.maven</groupId>
